@@ -1,0 +1,6 @@
+/* select all elements inside the logo class that have an id and give them a hover effect */
+path[id]:hover {
+    stroke: #0288D1;
+    stroke-width: 1px;
+    fill: #03A9F4;
+}
