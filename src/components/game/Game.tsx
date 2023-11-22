@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { EuropeMap, Timer } from "@components";
-import countriesData from "@data/countries.json";
-import { GameState, guessCountry, startGame } from "@stores";
+import { EuropeMap, Timer } from "../";
+import countriesData from "../../data/countries.json";
+import { GameState, guessCountry, startGame } from "../../stores";
 
 export type CountryCode = keyof typeof countriesData;
 const countries = countriesData as Record<CountryCode, string>;

@@ -1,4 +1,4 @@
-import { CountryCode } from "@components";
+import { CountryCode } from "../";
 import "./EuropeMap.css";
 
 type Props = {

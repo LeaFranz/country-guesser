@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import countriesData from "@data/countries.json";
+import countriesData from "../data/countries.json";
 
 export type CountryCode = keyof typeof countriesData;
 
@@ -10,6 +10,7 @@ export type GameState = {
     possibleCountries: CountryCode[];
     currentAnswer: CountryCode;
     score: number;
+    timer: number;
     won: boolean;
 };
 
@@ -23,6 +24,7 @@ const initialState: GameState = {
     possibleCountries: [...countryCodes],
     currentAnswer: getRandomCountry(countryCodes),
     score: 0,
+    timer: 0,
     won: false,
 };
 
@@ -56,10 +58,13 @@ const gameSlice = createSlice({
             state.score = 0;
             state.won = false;
         },
+        incrementTimer: (state) => {
+            state.timer = state.timer + 1;
+        }
     },
 });
 
-export const { startGame, guessCountry, resetGame } = gameSlice.actions;
+export const { startGame, guessCountry, resetGame, incrementTimer } = gameSlice.actions;
 export const gameStore = configureStore({
     reducer: gameSlice.reducer,
 });

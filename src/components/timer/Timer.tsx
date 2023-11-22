@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { GameState, incrementTimer } from "../../stores";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTimeString } from "../../utils";
 
 export function Timer() {
-    const [time, setTime] = useState(0);
-    const minutes = Math.floor(time / 600);
-    const seconds = Math.floor((time % 600) / 10);
+    const timer = useSelector((state: GameState) => state.timer);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setTime((time) => time + 1);
+            dispatch(incrementTimer());
         }, 100);
         return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run once
     }, []);
 
     return (
-        <p>
-            {minutes}:{seconds.toString().padStart(2, "0")}
-        </p>
+        <p>{getTimeString(timer)}</p>
     );
 }

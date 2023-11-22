@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { GameState } from "@stores";
-import { WinScreen } from "@components";
+import { GameState } from "../../stores";
+import { WinScreen } from "../";
 import { Game } from "../game";
 
 export function CountryGuesser() {
