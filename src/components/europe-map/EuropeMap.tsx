@@ -1,18 +1,37 @@
+import { useEffect } from "react";
 import { CountryCode } from "../";
 import "./EuropeMap.css";
 
 type Props = {
     onClick: (countryId: CountryCode) => void;
+    incorrectLastGuess: CountryCode | null;
 };
 
 export function EuropeMap(props: Props) {
     const { onClick } = props;
 
     function handleClick(event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+        // remove previous wrong guess highlighting
+        const incorrectLastGuessElement =
+            document.querySelector(".wrong-guess");
+        incorrectLastGuessElement?.classList.remove("wrong-guess");
+
         const target = event.target as SVGSVGElement;
 
         onClick(target.id as CountryCode);
     }
+
+    useEffect(() => {
+        if (props.incorrectLastGuess) {
+            const wrongGuessElement = document.querySelector(
+                `path[id='${props.incorrectLastGuess}']`
+            );
+
+            if (wrongGuessElement) {
+                wrongGuessElement.classList.add("wrong-guess");
+            }
+        }
+    }, [props.incorrectLastGuess]);
 
     return (
         <svg

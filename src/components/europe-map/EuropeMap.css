@@ -4,3 +4,8 @@ path[id]:hover {
     stroke-width: 1px;
     fill: #03A9F4;
 }
+
+path.wrong-guess {
+    stroke: #B71C1C; 
+    fill: #F44336;
+}
