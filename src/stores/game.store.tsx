@@ -47,6 +47,7 @@ const gameSlice = createSlice({
                     state.score++;
                     if (state.score === countryCodes.length) {
                         state.won = true;
+                        state.incorrectLastGuess = null;
 
                         if (
                             state.timer < state.currentHighscore ||
