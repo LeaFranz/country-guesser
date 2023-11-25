@@ -52,7 +52,9 @@ export function Game() {
                 <div className="my-3">
                     <span data-testid="find-country">
                         Find country:{" "}
-                        <strong>{getCountryName(game.currentAnswer)}</strong>{" "}
+                        <strong id="country-name">
+                            {getCountryName(game.currentAnswer)}
+                        </strong>{" "}
                         {getFlagEmoji(game.currentAnswer)}
                     </span>
                     <p data-testid="score">
