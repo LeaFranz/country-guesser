@@ -42,7 +42,7 @@ export function EuropeMap(props: Props) {
             stroke="black"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth=".1"
+            strokeWidth=".5"
             version="1.2"
             viewBox="0 0 1000 684"
             width="1000"

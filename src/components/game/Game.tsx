@@ -39,9 +39,12 @@ export function Game() {
                     <p>Highscore: {getTimeString(game.currentHighscore)}</p>
                 </div>
             )}
-            <h1>Guess the country</h1>
+            <h1 className="font-mono">Guess the country 🌍</h1>
             {!game.started ? (
-                <button className="my-5" onClick={() => dispatch(startGame())}>
+                <button
+                    className="my-5 outline outline-offset-2 outline-1"
+                    onClick={() => dispatch(startGame())}
+                >
                     Start Game
                 </button>
             ) : (

@@ -10,10 +10,13 @@ export function WinScreen() {
     return (
         <>
             <ConfettiExplosion duration={5000} />
-            <h1>You won!</h1>
+            <h1 className="font-mono">You won!</h1>
             <p>Your time: {getTimeString(gameState.timer)}</p>
             <p>Misses: {gameState.misses}</p>
-            <button className="my-3" onClick={() => dispatch(resetGame())}>
+            <button
+                className="my-5 outline outline-offset-2 outline-1 "
+                onClick={() => dispatch(resetGame())}
+            >
                 Play again
             </button>
         </>
