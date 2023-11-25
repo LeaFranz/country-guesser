@@ -27,7 +27,7 @@ export function Game() {
         const codePoints = countryCode
             .toUpperCase()
             .split("")
-            .map((char) => 127397 + char.charCodeAt());
+            .map((char) => 127397 + char.charCodeAt(0));
 
         return String.fromCodePoint(...codePoints);
     }
@@ -44,17 +44,18 @@ export function Game() {
                 <button
                     className="my-5 outline outline-offset-2 outline-1"
                     onClick={() => dispatch(startGame())}
+                    data-testid="start-game-button"
                 >
                     Start Game
                 </button>
             ) : (
                 <div className="my-3">
-                    <span>
+                    <span data-testid="find-country">
                         Find country:{" "}
                         <strong>{getCountryName(game.currentAnswer)}</strong>{" "}
                         {getFlagEmoji(game.currentAnswer)}
                     </span>
-                    <p>
+                    <p data-testid="score">
                         Score: {game.score} / {countryCodes.length}
                     </p>
                     <p>Misses: {game.misses}</p>
