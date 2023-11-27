@@ -12,6 +12,9 @@ export type GameState = {
     score: number;
     timer: number;
     won: boolean;
+    misses: number;
+    incorrectLastGuess: CountryCode | null;
+    currentHighscore: number;
 };
 
 function getRandomCountry(possibleCountries: CountryCode[]) {
@@ -26,6 +29,9 @@ const initialState: GameState = {
     score: 0,
     timer: 0,
     won: false,
+    misses: 0,
+    incorrectLastGuess: null,
+    currentHighscore: 0,
 };
 
 const gameSlice = createSlice({
@@ -41,6 +47,14 @@ const gameSlice = createSlice({
                     state.score++;
                     if (state.score === countryCodes.length) {
                         state.won = true;
+                        state.incorrectLastGuess = null;
+
+                        if (
+                            state.timer < state.currentHighscore ||
+                            state.currentHighscore === 0
+                        ) {
+                            state.currentHighscore = state.timer;
+                        }
                     }
                     state.possibleCountries = state.possibleCountries.filter(
                         (c) => c !== action.payload
@@ -48,6 +62,9 @@ const gameSlice = createSlice({
                     state.currentAnswer = getRandomCountry(
                         state.possibleCountries
                     );
+                } else {
+                    state.incorrectLastGuess = action.payload;
+                    state.misses++;
                 }
             }
         },
@@ -57,15 +74,17 @@ const gameSlice = createSlice({
             state.currentAnswer = getRandomCountry(countryCodes);
             state.score = 0;
             state.won = false;
+            state.misses = 0;
+            state.timer = 0;
         },
         incrementTimer: (state) => {
             state.timer = state.timer + 1;
-        }
+        },
     },
 });
 
-export const { startGame, guessCountry, resetGame, incrementTimer } = gameSlice.actions;
+export const { startGame, guessCountry, resetGame, incrementTimer } =
+    gameSlice.actions;
 export const gameStore = configureStore({
     reducer: gameSlice.reducer,
 });
-
